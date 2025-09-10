@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+    <html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>My Accout</title>
+    
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="icon" type="image/x-icon" href="../assets/jokerBentre.jpg">
+
+    <style>
+        /* Main Container */
+        .main {
+        padding-top: 6rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        }
+
+        .toggle-buttons {
+        margin-bottom: 2rem;
+        }
+
+        .toggle-buttons button {
+        padding: 0.75rem 1.5rem;
+        margin: 0 0.5rem;
+        border: none;
+        border-radius: 4px;
+        background-color: #0078D4;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        }
+
+        .toggle-buttons button:hover {
+        background-color: #005ea2;
+        }
+
+        .form-box {
+        background-color: #fff;
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        width: 100%;
+        max-width: 400px;
+        display: none;
+        animation: fadeIn 0.4s ease-in-out;
+        }
+
+        .form-box.active {
+        display: block;
+        }
+
+        @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+        }
+
+        label {
+        display: block;
+        margin-top: 1rem;
+        font-weight: 500;
+        }
+
+        input {
+        width: 100%;
+        padding: 0.5rem;
+        margin-top: 0.5rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        }
+
+        button.submit {
+        margin-top: 1.5rem;
+        padding: 0.75rem;
+        width: 100%;
+        background-color: #0078D4;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        }
+
+        button.submit:hover {
+        background-color: #005ea2;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <a href="../index.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="market.html">Market</a>
+        <a href="account.html">Account</a>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main">
+        <div class="toggle-buttons">
+        <button onclick="showPanel('login')">Login</button>
+        <button onclick="showPanel('register')">Register</button>
+        </div>
+
+        <!-- Login Form -->
+        <div id="login" class="form-box active">
+        <h2>Login</h2>
+        <form>
+            <label for="login-email">Email</label>
+            <input type="email" id="login-email" name="login-email" required />
+
+            <label for="login-password">Password</label>
+            <input type="password" id="login-password" name="login-password" required />
+
+            <button type="submit" class="submit">Login</button>
+        </form>
+        </div>
+
+        <!-- Register Form -->
+        <div id="register" class="form-box">
+        <h2>Register</h2>
+        <form>
+            <label for="reg-name">Full Name</label>
+            <input type="text" id="reg-name" name="reg-name" required />
+
+            <label for="reg-email">Email</label>
+            <input type="email" id="reg-email" name="reg-email" required />
+
+            <label for="reg-password">Password</label>
+            <input type="password" id="reg-password" name="reg-password" required />
+
+            <button type="submit" class="submit">Register</button>
+        </form>
+        </div>
+    </div>
+
+    <script>
+        function showPanel(panelId) {
+        document.getElementById('login').classList.remove('active');
+        document.getElementById('register').classList.remove('active');
+        document.getElementById(panelId).classList.add('active');
+        }
+    </script>
+
+</body>
+</html>
