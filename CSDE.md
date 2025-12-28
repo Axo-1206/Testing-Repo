@@ -3,6 +3,68 @@
 
 ---
 
+## Biểu đồ database 
+```mermaid
+erDiagram
+    %% Nhóm Hệ thống & Phân quyền
+    ROLES ||--o{ USERS : "gán cho"
+    ROLES ||--o{ ROLE_PERMISSIONS : "có"
+    PERMISSIONS ||--o{ ROLE_PERMISSIONS : "thuộc về"
+
+    %% Nhóm Không gian & Con người
+    BLOCKS ||--o{ APARTMENTS : "chứa"
+    BLOCKS ||--o{ FACILITIES : "có"
+    APARTMENT_TYPES ||--o{ APARTMENTS : "định nghĩa"
+    APARTMENTS ||--o{ RESIDENTS : "nơi ở"
+    USERS ||--o| RESIDENTS : "liên kết"
+    RESIDENTS ||--o{ VEHICLES : "sở hữu"
+    RESIDENTS ||--o{ LIVING_HISTORY : "lịch sử"
+    APARTMENTS ||--o{ LIVING_HISTORY : "ghi nhận"
+
+    %% Nhóm Tài chính & Dịch vụ
+    APARTMENTS ||--o{ INVOICES : "nhận hóa đơn"
+    APARTMENTS ||--o{ SERVICE_USAGE : "sử dụng"
+    SERVICES ||--o{ SERVICE_USAGE : "loại dịch vụ"
+    SERVICES ||--o{ INVOICE_DETAILS : "chi tiết"
+    INVOICES ||--o{ INVOICE_DETAILS : "có"
+    INVOICES ||--o{ PAYMENTS : "thanh toán"
+    USERS ||--o{ PAYMENTS : "thu tiền (collector)"
+
+    %% Nhóm Vận hành & Tài sản
+    RESIDENTS ||--o{ COMPLAINTS : "gửi"
+    USERS ||--o{ NOTIFICATIONS : "tạo"
+    EXPENSE_CATEGORIES ||--o{ OPERATIONAL_EXPENSES : "phân loại"
+    USERS ||--o{ OPERATIONAL_EXPENSES : "duyệt"
+    FACILITY_ASSETS ||--o{ MAINTENANCE_LOGS : "bảo trì"
+
+    ROLES {
+        int role_id PK
+        string role_name
+    }
+    USERS {
+        int user_id PK
+        string username
+        int role_id FK
+    }
+    APARTMENTS {
+        string apartment_id PK
+        int block_id FK
+        int type_id FK
+    }
+    RESIDENTS {
+        int resident_id PK
+        int user_id FK
+        string apartment_id FK
+    }
+    INVOICES {
+        int invoice_id PK
+        string apartment_id FK
+        decimal total_amount
+    }
+ ```
+   
+---
+
 ## 📑 Tổng quan
 
 * Tổng số bảng: **20 chính + 2 chưa hoàn thành(21 và 22)**
